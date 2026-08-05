@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=600, height=600, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="緑にフラッシュした瞬間にタップする反射神経テスト。5ラウンドの平均タイムとベストタイムを計測し、自己ベストを記録します。">
+  <meta name="mrbd-web-app-capable" content="yes">
+  <title>ヒカリレフレックス</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- HOME -->
+    <div id="home" class="screen">
+      <div class="home-content">
+        <h1 class="title">ヒカリレフレックス</h1>
+        <p class="instructions">緑になったら<br>すぐタップ！</p>
+        <p class="best-preview hidden" id="home-best-preview">自己ベスト: <span id="home-best-value">--</span>ms</p>
+      </div>
+      <div class="home-actions">
+        <button class="btn btn-primary focusable" data-action="start" tabindex="0">スタート</button>
+      </div>
+    </div>
+
+    <!-- ROUND: wait / early / go / result phases all live here -->
+    <div id="round" class="screen hidden">
+      <div id="flash-zone" class="flash-zone phase-wait focusable" tabindex="0" role="button" aria-label="反応してタップ" data-action="round-tap">
+        <div class="round-counter" id="round-counter">ラウンド 1/5</div>
+        <div class="flash-text" id="flash-text" aria-live="polite">まて&hellip;</div>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div id="summary" class="screen hidden">
+      <header class="header">
+        <h1>けっか</h1>
+      </header>
+      <div class="content summary-content">
+        <div class="summary-stats">
+          <div class="stat-card">
+            <div class="stat-label">平均</div>
+            <div class="stat-value"><span id="summary-avg">--</span><span class="unit">ms</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">ベスト</div>
+            <div class="stat-value"><span id="summary-best">--</span><span class="unit">ms</span></div>
+          </div>
+        </div>
+        <p class="flavor-text" id="summary-flavor"></p>
+        <p class="alltime-best" id="summary-alltime">自己ベスト: <span id="summary-alltime-value">--</span>ms<span class="new-best-tag hidden" id="new-best-tag">更新！</span></p>
+      </div>
+      <nav class="nav-bar">
+        <button class="nav-item primary focusable" data-action="retry" tabindex="0">もう一度</button>
+        <button class="nav-item focusable" data-action="back" tabindex="0">&#8592; もどる</button>
+      </nav>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
